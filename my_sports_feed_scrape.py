@@ -55,5 +55,12 @@ def scrape_player(year):
                 'wsh','car','njd','stl','pit','nsh','sjs','ana','lak','van','cgy','nyi','chi','edm','dal']
     for team in allTeams:
         pull_url = 'https://api.mysportsfeeds.com/v1.1/pull/nhl/' + str(year) + '-' + str(year+1) + '-regular/player_gamelogs.csv?team=' + team
-        if __name__ == '__main__':
-            send_request(pull_url)
+
+if __name__ == '__main__':
+ 
+  host = ''
+  username ='USERNAME'
+  password = 'PASSWORD'
+  database = 'DBNAME'
+
+  send_request(pull_url)
