@@ -43,8 +43,14 @@ def scrape_dfs(year):
 def scrape_teams(year):
     allTeams = ['bos','cbj','tor','wpj','nyr','det','flo','tbl','mtl','ari','col','min','ott','phi','buf',
                 'wsh','car','njd','stl','pit','nsh','sjs','ana','lak','van','cgy','nyi','chi','edm','dal']
+
     for team in allTeams:
         pull_url = 'https://api.mysportsfeeds.com/v1.1/pull/nhl/' + str(year) + '-' + str(year+1) + '-regular/team_gamelogs.json?team=' + team
+        response = json.loads(send_request(pull_url))
+        team_game_logs = response['teamgamelogs']['gamelogs']
+
+    	for game_log in team_game_logs:
+            print game_log
 
 def scrape_player(year):
     allTeams = ['bos','cbj','tor','wpj','nyr','det','flo','tbl','mtl','ari','col','min','ott','phi','buf',
@@ -52,8 +58,8 @@ def scrape_player(year):
     for team in allTeams:
         pull_url = 'https://api.mysportsfeeds.com/v1.1/pull/nhl/' + str(year) + '-' + str(year+1) + '-regular/player_gamelogs.json?team=' + team
         response = json.loads(send_request(pull_url))
-       
         player_game_logs = response['playergamelogs']['gamelogs']
+
         for game_log in player_game_logs:
           print game_log
 
@@ -64,5 +70,6 @@ if __name__ == '__main__':
   password = 'PASSWORD'
   database = 'DBNAME'
 
-  scrape_player(2016)
+#  scrape_player(2016)
+  scrape_teams(2016)
 
