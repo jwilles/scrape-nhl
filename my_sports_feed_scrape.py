@@ -35,6 +35,11 @@ def scrape_dfs(year):
     for month in allMonths1:
         for day in allDays:
             pull_url = 'https://api.mysportsfeeds.com/v1.1/pull/nhl/' + str(year) + '-' + str(year+1) + '-regular/daily_dfs.json?fordate=' + str(year) + str(month) + str(day)
+            response = json.loads(send_request(2016))
+            daily_dfs = response['dailydfs']['dfsentries']
+            
+            for dfs in daily_dfs:
+              print dfs
 
     for month in allMonths2:
         for day in allDays:
