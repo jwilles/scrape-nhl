@@ -2,6 +2,9 @@ import requests
 import os
 import base64
 import json
+import pandas as pd
+from StringIO import StringIO
+
 
 def send_request(pull_url):
     # Request
@@ -46,9 +49,15 @@ def scrape_teams(year):
     allTeams = ['bos','cbj','tor','wpj','nyr','det','flo','tbl','mtl','ari','col','min','ott','phi','buf',
                 'wsh','car','njd','stl','pit','nsh','sjs','ana','lak','van','cgy','nyi','chi','edm','dal']
 
+    team_games = {}
+
     for team in allTeams:
         pull_url = 'https://api.mysportsfeeds.com/v1.1/pull/nhl/' + str(year) + '-' + str(year+1) + '-regular/team_gamelogs.csv?team=' + team
         response = send_request(pull_url)
+   	team_df = pd.read_csv(StringIO(response), sep=",")
+        team_games[team] = team_df
+    
+    return team_games
 
 def scrape_player(year):
     allTeams = ['bos','cbj','tor','wpj','nyr','det','flo','tbl','mtl','ari','col','min','ott','phi','buf',
@@ -65,5 +74,6 @@ if __name__ == '__main__':
   database = 'DBNAME'
 
 #  scrape_player(2016)
-  scrape_teams(2016)
+  team_games = scrape_teams(2016)
+  print team_games
 
