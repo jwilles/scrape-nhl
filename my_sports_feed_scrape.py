@@ -35,11 +35,12 @@ def scrape_dfs(year):
     for month in allMonths1:
         for day in allDays:
             pull_url = 'https://api.mysportsfeeds.com/v1.1/pull/nhl/' + str(year) + '-' + str(year+1) + '-regular/daily_dfs.csv?fordate=' + str(year) + str(month) + str(day)
-            response = send_request(2016)
+            response = send_request(pull_url)
 
     for month in allMonths2:
         for day in allDays:
             pull_url = 'https://api.mysportsfeeds.com/v1.1/pull/nhl/' + str(year) + '-' + str(year+1) + '-regular/daily_dfs.csv?fordate=' + str(year+1) + str(month) + str(day)
+            response = send_request(pull_url)
 
 def scrape_teams(year):
     allTeams = ['bos','cbj','tor','wpj','nyr','det','flo','tbl','mtl','ari','col','min','ott','phi','buf',
