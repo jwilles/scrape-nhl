@@ -31,16 +31,16 @@ def send_request(pull_url):
     return response.content
 
 def scrape_dfs(year):
-    allMonths1 = ['10','11','12']
-    allMonths2 = ['01','02','03','04']
+    preNewYearMonths = ['10','11','12']
+    postNewYearMonths = ['01','02','03','04']
     allDays = ['01','02','03','04','05','06','07','08','09'] + list(range(10,32))
 
-    for month in allMonths1:
+    for month in preNewYearMonths:
         for day in allDays:
             pull_url = 'https://api.mysportsfeeds.com/v1.1/pull/nhl/' + str(year) + '-' + str(year+1) + '-regular/daily_dfs.csv?fordate=' + str(year) + str(month) + str(day)
             response = send_request(pull_url)
 
-    for month in allMonths2:
+    for month in postNewYearMonths:
         for day in allDays:
             pull_url = 'https://api.mysportsfeeds.com/v1.1/pull/nhl/' + str(year) + '-' + str(year+1) + '-regular/daily_dfs.csv?fordate=' + str(year+1) + str(month) + str(day)
             response = send_request(pull_url)
