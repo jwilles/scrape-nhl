@@ -34,39 +34,27 @@ def scrape_dfs(year):
 
     for month in allMonths1:
         for day in allDays:
-            pull_url = 'https://api.mysportsfeeds.com/v1.1/pull/nhl/' + str(year) + '-' + str(year+1) + '-regular/daily_dfs.json?fordate=' + str(year) + str(month) + str(day)
-            response = json.loads(send_request(2016))
-            daily_dfs = response['dailydfs']['dfsentries']
-            
-            for dfs in daily_dfs:
-              print dfs
+            pull_url = 'https://api.mysportsfeeds.com/v1.1/pull/nhl/' + str(year) + '-' + str(year+1) + '-regular/daily_dfs.csv?fordate=' + str(year) + str(month) + str(day)
+            response = send_request(2016)
 
     for month in allMonths2:
         for day in allDays:
-            pull_url = 'https://api.mysportsfeeds.com/v1.1/pull/nhl/' + str(year) + '-' + str(year+1) + '-regular/daily_dfs.json?fordate=' + str(year+1) + str(month) + str(day)
+            pull_url = 'https://api.mysportsfeeds.com/v1.1/pull/nhl/' + str(year) + '-' + str(year+1) + '-regular/daily_dfs.csv?fordate=' + str(year+1) + str(month) + str(day)
 
 def scrape_teams(year):
     allTeams = ['bos','cbj','tor','wpj','nyr','det','flo','tbl','mtl','ari','col','min','ott','phi','buf',
                 'wsh','car','njd','stl','pit','nsh','sjs','ana','lak','van','cgy','nyi','chi','edm','dal']
 
     for team in allTeams:
-        pull_url = 'https://api.mysportsfeeds.com/v1.1/pull/nhl/' + str(year) + '-' + str(year+1) + '-regular/team_gamelogs.json?team=' + team
-        response = json.loads(send_request(pull_url))
-        team_game_logs = response['teamgamelogs']['gamelogs']
-
-    	for game_log in team_game_logs:
-            print game_log
+        pull_url = 'https://api.mysportsfeeds.com/v1.1/pull/nhl/' + str(year) + '-' + str(year+1) + '-regular/team_gamelogs.csv?team=' + team
+        response = send_request(pull_url)
 
 def scrape_player(year):
     allTeams = ['bos','cbj','tor','wpj','nyr','det','flo','tbl','mtl','ari','col','min','ott','phi','buf',
                 'wsh','car','njd','stl','pit','nsh','sjs','ana','lak','van','cgy','nyi','chi','edm','dal']
     for team in allTeams:
-        pull_url = 'https://api.mysportsfeeds.com/v1.1/pull/nhl/' + str(year) + '-' + str(year+1) + '-regular/player_gamelogs.json?team=' + team
-        response = json.loads(send_request(pull_url))
-        player_game_logs = response['playergamelogs']['gamelogs']
-
-        for game_log in player_game_logs:
-          print game_log
+        pull_url = 'https://api.mysportsfeeds.com/v1.1/pull/nhl/' + str(year) + '-' + str(year+1) + '-regular/player_gamelogs.csv?team=' + team
+        response = send_request(pull_url)
 
 if __name__ == '__main__':
  
