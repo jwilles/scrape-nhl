@@ -4,7 +4,12 @@ import base64
 import json
 import pandas as pd
 from StringIO import StringIO
+import sqlalchemy
 
+
+def create_db_engine():
+  return db_engine = sqlalchemy.create_engine('postgres://') 
+ 
 
 def send_request(pull_url):
     # Request
@@ -71,9 +76,10 @@ if __name__ == '__main__':
   host = 'localhost'
   username ='USERNAME'
   password = 'PASSWORD'
-  database = 'DBNAME'
+ database = 'DBNAME'
 
-#  scrape_player(2016)
+  db_engine = create_db_engine() 
+
   team_games = scrape_teams(2016)
-  print team_games
+  print team_games['bos']
 
